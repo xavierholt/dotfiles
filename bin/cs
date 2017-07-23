@@ -16,26 +16,18 @@ EOF
   exit 1
 }
 
-OPTS=("--exclude-dir" ".git")
+OPTS=("--exclude-dir=.git")
 while getopts "d:x:i" opt; do
   case "$opt" in
-    d)
-      DIRS+=("$OPTARG")
-      ;;
-    x)
-      EXTS+=("--include")
-      EXTS+=("*.$OPTARG")
-      ;;
-    i)
-      OPTS+=("-i")
-      ;;
+    d) DIRS+=("$OPTARG");;
+    x) EXTS+=("--include=*.$OPTARG");;
+    i) OPTS+=("-i");;
   esac
 done
 
 shift $((OPTIND-1))
 for arg in "$@"; do
-  PATS+=("-e")
-  PATS+=("$arg")
+  PATS+=("-e" "$arg")
 done
 
 if [ ${#PATS[@]} -eq 0 ]; then
