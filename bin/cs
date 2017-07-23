@@ -1,0 +1,38 @@
+#! /bin/bash
+set -e
+
+while getopts "d:x:i" opt; do
+  case "$opt" in
+    d)
+      if [ ! -d "$OPTARG" ]; then
+        echo "No such directory: '$OPTARG'!" >&2
+        return 1
+      else
+        DIRS="$DIRS $OPTARG"
+      fi;;
+    x)
+      if [ -z "$OPTARG" ]; then
+        echo "Extension argument required!" >&2
+        return 1
+      else
+        EXTS="$EXTS --include=*.$OPTARG"
+      fi;;
+    i) OPTS="$OPTS -i";;
+  esac
+done
+
+shift $((OPTIND-1))
+for arg in "$@"; do
+  PATS="$PATS -e $arg"
+done
+
+if [ -z "$DIRS" ]; then
+  DIRS="."
+fi
+
+if [ -z "$PATS" ]; then
+  echo "No pattern given!" >&2
+  return
+fi
+
+grep -Irn --color $OPTS $EXTS $PATS $DIRS
