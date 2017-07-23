@@ -1,9 +1,8 @@
 #! /bin/bash
+cd $(dirname "${BASH_SOURCE[0]}")
 set -ex
 
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
 mkdir -p ~/bin
-cp "$DIR"/bin/* ~/bin
-cp "$DIR/bashrc.sh" ~/.bashrc
-cp "$DIR/bash_profile.sh" ~/.bash_profile
+cp bin/* ~/bin
+cp bashrc.sh ~/.bashrc
+cp bash_profile.sh ~/.bash_profile
