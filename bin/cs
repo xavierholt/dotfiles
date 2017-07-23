@@ -1,38 +1,49 @@
 #! /bin/bash
 set -e
 
+usage() {
+  if [ -n "$1" ]; then
+    echo "$1" >&2
+    echo      >&2
+  fi
+
+  cat >&2 <<EOF
+"USAGE: cs [options] <pattern> <pattern> ..."
+  -d <dir>  Only search in <dir> (may be specified multiple times).
+  -i        Perform a case-insensitive search.
+  -x <ext>  Only search on files named *.<ext> (may be specified multiple times).
+EOF
+  exit 1
+}
+
+OPTS=("--exclude-dir" ".git")
 while getopts "d:x:i" opt; do
   case "$opt" in
     d)
-      if [ ! -d "$OPTARG" ]; then
-        echo "No such directory: '$OPTARG'!" >&2
-        return 1
-      else
-        DIRS="$DIRS $OPTARG"
-      fi;;
+      DIRS+=("$OPTARG")
+      ;;
     x)
-      if [ -z "$OPTARG" ]; then
-        echo "Extension argument required!" >&2
-        return 1
-      else
-        EXTS="$EXTS --include=*.$OPTARG"
-      fi;;
-    i) OPTS="$OPTS -i";;
+      EXTS+=("--include")
+      EXTS+=("*.$OPTARG")
+      ;;
+    i)
+      OPTS+=("-i")
+      ;;
   esac
 done
 
 shift $((OPTIND-1))
 for arg in "$@"; do
-  PATS="$PATS -e $arg"
+  PATS+=("-e")
+  PATS+=("$arg")
 done
 
-if [ -z "$DIRS" ]; then
-  DIRS="."
+if [ ${#PATS[@]} -eq 0 ]; then
+  usage "No pattern given!"
 fi
 
-if [ -z "$PATS" ]; then
-  echo "No pattern given!" >&2
-  return
+if [ ${#DIRS[@]} -eq 0 ]; then
+  DIRS+=(".")
 fi
 
-grep -Irn --color $OPTS $EXTS $PATS $DIRS
+grep -Irn --color=auto "${OPTS[@]}" "${EXTS[@]}" "${PATS[@]}" "${DIRS[@]}"
