@@ -26,10 +26,10 @@ alias "gb"="git branch"
 alias "gs"="git status"
 alias "gd"="git diff"
 
-if [ -d "~/.rbenv" ]; then
+if [ -d "$HOME/.rbenv" ]; then
   eval "$(rbenv init -)"
 fi
 
-if [ -f "~/.bash_local" ]; then
-  source "~/.bash_local"
+if [ -f "$HOME/.bash_local" ]; then
+  source "$HOME/.bash_local"
 fi
