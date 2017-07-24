@@ -1,8 +1,20 @@
 #! /bin/bash
 cd $(dirname "${BASH_SOURCE[0]}")
-set -ex
+
+if [ "$1" = "" ]; then
+  CP="cp -i"
+elif [ "$1" = "-f" ]; then
+  CP="cp"
+  set -x
+elif [ "$1" = "--force" ]; then
+  CP="cp"
+  set -x
+else
+  echo "Unknown option: $1" >&2
+  exit 1
+fi
 
 mkdir -p ~/bin
-cp bin/* ~/bin
-cp bashrc.sh ~/.bashrc
-cp bash_profile.sh ~/.bash_profile
+$CP bin/* ~/bin
+$CP bashrc.sh ~/.bashrc
+$CP bash_profile.sh ~/.bash_profile
