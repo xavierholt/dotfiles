@@ -1,3 +1,8 @@
+if [ -n "$PS1" ]; then
+  export PS1="[\[\e[37m\]\t \[\e[32m\]\u@\h\[\e[1m\e[34m\] \W\[\e[0m\]]\$ "
+  which -s fortune && (echo; fortune; echo)
+fi
+
 export HISTCONTROL="ignoreboth"
 export PATH="$PATH:$HOME/bin"
 
@@ -15,6 +20,8 @@ Darwin)
 esac
 
 alias "tree"="tree -Chp"
+alias "be"="bundle exec"
+alias "gr"="git remote -v"
 alias "gb"="git branch"
 alias "gs"="git status"
 alias "gd"="git diff"
@@ -23,7 +30,6 @@ if [ -d "~/.rbenv" ]; then
   eval "$(rbenv init -)"
 fi
 
-if [ -n "$PS1" ]; then
-  export PS1="[\[\e[37m\]\t \[\e[32m\]\u@\h\[\e[1m\e[34m\] \W\[\e[0m\]]\$ "
-  which -s fortune && (echo; fortune; echo)
+if [ -f "~/.bash_local" ]; then
+  source "~/.bash_local"
 fi
