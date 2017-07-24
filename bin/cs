@@ -1,20 +1,4 @@
-#! /bin/bash
-set -e
-
-usage() {
-  if [ -n "$1" ]; then
-    echo "$1" >&2
-    echo      >&2
-  fi
-
-  cat >&2 <<EOF
-"USAGE: cs [options] <pattern> <pattern> ..."
-  -d <dir>  Only search in <dir> (may be specified multiple times).
-  -i        Perform a case-insensitive search.
-  -x <ext>  Only search on files named *.<ext> (may be specified multiple times).
-EOF
-  exit 1
-}
+#! /bin/bash -e
 
 OPTS=("--exclude-dir=.git")
 while getopts "d:x:i" opt; do
@@ -31,7 +15,8 @@ for arg in "$@"; do
 done
 
 if [ ${#PATS[@]} -eq 0 ]; then
-  usage "No pattern given!"
+  echo "No pattern given!" >&2
+  exit 1
 fi
 
 if [ ${#DIRS[@]} -eq 0 ]; then
