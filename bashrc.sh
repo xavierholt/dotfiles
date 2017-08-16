@@ -19,6 +19,7 @@ Darwin)
   ;;
 esac
 
+alias "ag"="ag --color-path 34 --color-match 32 --color-line-number 36"
 alias "tree"="tree -Chp"
 alias "be"="bundle exec"
 alias "gr"="git remote -v"
