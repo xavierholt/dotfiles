@@ -1,5 +1,10 @@
 if [ -n "$PS1" ]; then
-  export PS1="[\[\e[37m\]\t \[\e[32m\]\u@\h\[\e[1m\e[34m\] \W\[\e[0m\]]\$ "
+  if [ -n "$SSH_CONNECTION" ]; then
+    export PS1="[\[\e[37m\]\t \[\e[35m\]\u@\h\[\e[1m\e[34m\] \W\[\e[0m\]]\$ "
+  else
+    export PS1="[\[\e[37m\]\t \[\e[32m\]\u@\h\[\e[1m\e[34m\] \W\[\e[0m\]]\$ "
+  fi
+
   which -s fortune && (echo; fortune; echo)
 fi
 
