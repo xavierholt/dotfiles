@@ -1,6 +1,11 @@
 if [ -n "$PS1" ]; then
-  export PS1="[\[\e[37m\]\t \[\e[32m\]\u@\h\[\e[1m\e[34m\] \W\[\e[0m\]]\\$ "
-  which -s fortune && (echo; fortune; echo)
+  if [ -n "$SSH_CONNECTION" ]; then
+    export PS1="[\[\e[37m\]\t \[\e[35m\]\u@\h\[\e[1m\e[34m\] \W\[\e[0m\]]\\$ "
+  else
+    export PS1="[\[\e[37m\]\t \[\e[32m\]\u@\h\[\e[1m\e[34m\] \W\[\e[0m\]]\\$ "
+  fi
+
+  which fortune &> /dev/null && (echo; fortune; echo)
 fi
 
 export HISTCONTROL="ignoreboth"
@@ -31,10 +36,14 @@ if [ -d "$HOME/.rbenv" ]; then
   eval "$(rbenv init -)"
 fi
 
-if [ -f "$HOME/.bash_local" ]; then
-  source "$HOME/.bash_local"
+if [ -d "$HOME/.pyenv" ]; then
+  eval "$(pyenv init -)"
 fi
 
 if [ -d "$HOME/Code/go" ]; then
   export GOPATH="$HOME/Code/go"
+fi
+
+if [ -f "$HOME/.bash_local" ]; then
+  source "$HOME/.bash_local"
 fi
