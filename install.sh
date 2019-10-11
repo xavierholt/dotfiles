@@ -14,7 +14,7 @@ else
   exit 1
 fi
 
-mkdir -p ~/bin
-$CP bin/* ~/bin
+$CP profile.sh ~/.profile
 $CP bashrc.sh ~/.bashrc
 $CP bash_profile.sh ~/.bash_profile
+$CP zshrc.sh ~/.zshrc
