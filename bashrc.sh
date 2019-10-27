@@ -4,6 +4,8 @@ else
   export PS1="[\[\e[37m\]\t \[\e[32m\]\u@\h\[\e[1m\e[34m\] \W\[\e[0m\]]\\$ "
 fi
 
+export HISTCONTROL="ignoreboth"
+
 if [ -f "$HOME/.profile" ]; then
   . "$HOME/.profile"
 fi

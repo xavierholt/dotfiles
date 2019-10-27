@@ -1,6 +1,5 @@
 which fortune &> /dev/null && (echo; fortune; echo)
 
-export HISTCONTROL="ignoreboth"
 export PATH="$PATH:$HOME/bin"
 
 case "$(uname)" in
