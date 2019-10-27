@@ -4,8 +4,8 @@ else
   export PROMPT="[%7F%D{%H:%M:%S} %2F%n@%m %B%4F%1/%b%f]$ "
 fi
 
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
+setopt histignoredups
+setopt histignorespace
 
 if [ -f "$HOME/.profile" ]; then
   . "$HOME/.profile"
