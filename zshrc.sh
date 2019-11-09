@@ -1,7 +1,9 @@
-if [ -n "$SSH_CONNECTION" ]; then
-  export PROMPT="[%7F%D{%H:%M:%S} %5F%n@%m %B%4F%1/%b%f]$ "
+if [ -f "/.dockerenv" ]; then
+  export PROMPT="[%7F%D{%H:%M:%S} %3F%n@%m %B%4F%1~%b%f]$ "
+elif [ -n "$SSH_CONNECTION" ]; then
+  export PROMPT="[%7F%D{%H:%M:%S} %5F%n@%m %B%4F%1~%b%f]$ "
 else
-  export PROMPT="[%7F%D{%H:%M:%S} %2F%n@%m %B%4F%1/%b%f]$ "
+  export PROMPT="[%7F%D{%H:%M:%S} %2F%n@%m %B%4F%1~%b%f]$ "
 fi
 
 setopt histignoredups
