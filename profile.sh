@@ -20,13 +20,14 @@ pwn() {
 }
 
 alias "ag"="ag --color-path 34 --color-match 32 --color-line-number 36"
-alias "tree"="tree -Chp"
 alias "be"="bundle exec"
-alias "gr"="git remote -v"
+alias "dc"="docker-compose"
 alias "gb"="git branch"
-alias "gs"="git status"
 alias "gd"="git diff"
+alias "gr"="git remote -v"
+alias "gs"="git status"
 alias "kc"="kubectl"
+alias "tree"="tree -Chp"
 
 if [ -d "$HOME/.rbenv" ]; then
   eval "$(rbenv init -)"
