@@ -27,6 +27,7 @@ alias "gd"="git diff"
 alias "gr"="git remote -v"
 alias "gs"="git status"
 alias "kc"="kubectl"
+alias "tf"="terraform"
 alias "tree"="tree -Chp"
 
 if [ -d "$HOME/.rbenv" ]; then
