@@ -16,7 +16,7 @@ Darwin)
 esac
 
 pwn() {
-  docker run --rm -itv "$(cd "${1:-.}"; pwd):/mnt" -w "/mnt" pwn
+  docker run --rm -itv "$(cd "${2:-.}"; pwd):/mnt" -w "/mnt" "${1:-pwn}"
 }
 
 alias "ag"="ag --color-path 34 --color-match 32 --color-line-number 36"
