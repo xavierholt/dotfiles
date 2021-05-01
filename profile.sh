@@ -7,6 +7,10 @@ Darwin)
   alias "la"="ls -Gla"
   alias "ll"="ls -Gl"
   alias "ls"="ls -G"
+
+  # netstat -l replacements:
+  alias "tcp"="lsof -iTCP -sTCP:LISTEN"
+  alias "udp"="lsof -iUDP"
   ;;
 *)
   alias "la"="ls --color -la"
@@ -24,12 +28,14 @@ alias "be"="bundle exec"
 alias "dc"="docker-compose"
 alias "gb"="git branch"
 alias "gd"="git diff"
+alias "gds"="git diff --staged"
 alias "gg"="git log --oneline --graph"
 alias "gr"="git remote -v"
 alias "gs"="git status"
 alias "kc"="kubectl"
 alias "tf"="terraform"
 alias "tree"="tree -Chp"
+alias "tssh"="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 
 if [ -d "$HOME/.rbenv" ]; then
   eval "$(rbenv init -)"
