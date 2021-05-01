@@ -9,8 +9,8 @@ Darwin)
   alias "ls"="ls -G"
 
   # netstat -l replacements:
-  alias "tcp"="lsof -iTCP -sTCP:LISTEN"
-  alias "udp"="lsof -iUDP"
+  alias "tcp"="lsof -P -iTCP -sTCP:LISTEN"
+  alias "udp"="lsof -P -iUDP"
   ;;
 *)
   alias "la"="ls --color -la"
