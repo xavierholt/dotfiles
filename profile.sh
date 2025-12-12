@@ -39,6 +39,10 @@ alias "tf"="terraform"
 alias "tree"="tree -Chp"
 alias "tssh"="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 
+if [ -d "/opt/homebrew" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 if [ -d "$HOME/.rbenv" ]; then
   eval "$(rbenv init -)"
 fi
