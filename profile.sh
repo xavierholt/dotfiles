@@ -23,8 +23,9 @@ pwn() {
   docker run --rm -itv "$(cd "${2:-.}"; pwd):/mnt" -w "/mnt" "${1:-pwn}"
 }
 
+alias "awscp"="scp -o 'UserKnownHostsFile=/dev/null' -o 'StrictHostKeyChecking=no'"
 alias "awssh"="ssh -o 'UserKnownHostsFile=/dev/null' -o 'StrictHostKeyChecking=no'"
-alias "ag"="ag --color-path 34 --color-match 32 --color-line-number 36"
+alias "ag"="ag --color-path 34 --color-match 35 --color-line-number 36"
 alias "be"="bundle exec"
 alias "dc"="docker-compose"
 alias "gb"="git branch"
